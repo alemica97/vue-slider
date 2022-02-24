@@ -30,13 +30,15 @@
                     <span class="prev">
                         <i class="fas fa-chevron-up"></i>
                     </span>
-                    <span class="next" @click="nextImg">
+                    <span @click="nextImg" class="next">
                         <i class="fas fa-chevron-down"></i>
                     </span>
                 </div>
 
                 <div class="img-preview">
-
+                    <div v-for="element in carouselObjects" v-bind:class="controlClass">
+                        <img v-bind:src="element.image" alt="">
+                    </div>
                 </div>
     
             </div>

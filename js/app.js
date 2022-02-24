@@ -1,3 +1,5 @@
+let activeClass = 0;
+
 const app = new Vue({
     el : '#app',
     data : {
@@ -36,15 +38,35 @@ const app = new Vue({
         carouselClass : 'item',
         carouselTitleClass : 'title',
         carouselDescriptionClass : 'description',
-        activeClass : 'item active'
+        controlClass : 'control-wrapper'
     },
     methods : {
-           nextImg : function(){
-            return this.carouselClass = 'item active';
-           } ,
+        nextImg : function(){
+            if(activeClass < this.carouselObjects.length -1){
+                items[activeClass].classList.remove('active');
+                
+                activeClass++;
+        
+                items[activeClass].classList.add('active');
+                
+            }else{
+                items[activeClass].classList.remove('active');
+                
+                activeClass = 0;
+        
+                items[activeClass].classList.add('active');
+                
+            }
+        },
     }
 });
 
+const items = [...document.getElementsByClassName('item')];
+console.log(items);
+items[activeClass].classList.add('active');
+
+// const overlayActive = [...document.getElementsByClassName('control-wrapper')];
+// overlayActive[activeClass].classList.add('active');
 // //Trasformo i tre array imgCarousel, imgPlaces ed imgDescription in un unico array composto da oggetti
 // const carouselObjects = [
 //     {
