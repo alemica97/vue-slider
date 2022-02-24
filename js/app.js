@@ -40,45 +40,39 @@ const app = new Vue({
         carouselDescriptionClass : 'description',
         controlClass : 'control-wrapper'
     },
+    mounted: function(){
+        this.slideCarousel();
+    },
     methods : {
         nextImg : function(){
             if(activeClass < this.carouselObjects.length -1){
-                items[activeClass].classList.remove('active');
-                overlayActive[activeClass].classList.remove('active');
+                removeActive();
                 activeClass++;
-                overlayActive[activeClass].classList.add('active');
-                items[activeClass].classList.add('active');
-                
+                addActive();
             }else{
-                items[activeClass].classList.remove('active');
-                overlayActive[activeClass].classList.remove('active');
+                removeActive();
                 activeClass = 0;
-                overlayActive[activeClass].classList.add('active');
-                items[activeClass].classList.add('active');
-                
+                addActive();
             }
         },
         prevImg : function(){
             if(activeClass > 0){
-                items[activeClass].classList.remove('active');
-                overlayActive[activeClass].classList.remove('active');
+                removeActive();
                 activeClass--;
-                items[activeClass].classList.add('active');
-                overlayActive[activeClass].classList.add('active');
+                addActive();
             }else{
-                items[activeClass].classList.remove('active');
-                overlayActive[activeClass].classList.remove('active');
+                removeActive();
                 activeClass = items.length - 1;
-                items[activeClass].classList.add('active');
-                overlayActive[activeClass].classList.add('active');
+                addActive();
             }
         },
         actualImg : function(index){
-            items[activeClass].classList.remove('active');
-            overlayActive[activeClass].classList.remove('active');
+            removeActive();
             activeClass = index;
-            overlayActive[activeClass].classList.add('active');
-            items[activeClass].classList.add('active');
+            addActive();
+        },
+        slideCarousel: function () {
+            setInterval(this.nextImg, 3000);
         }
     }
 });
@@ -87,3 +81,14 @@ const items = [...document.getElementsByClassName('item')];
 items[activeClass].classList.add('active');
 const overlayActive = [...document.getElementsByClassName('control-wrapper')];
 overlayActive[activeClass].classList.add('active');
+
+function removeActive(){
+    items[activeClass].classList.remove('active');
+    overlayActive[activeClass].classList.remove('active');
+};
+
+function addActive(){
+    overlayActive[activeClass].classList.add('active');
+    items[activeClass].classList.add('active');
+}
+
