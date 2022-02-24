@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="img-preview">
-                    <div v-for="element in carouselObjects" v-bind:class="controlClass">
+                    <div v-for="(element, index) in carouselObjects" @click="actualImg(index)" v-bind:class="controlClass">
                         <img v-bind:src="element.image">
                     </div>
                 </div>

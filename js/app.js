@@ -72,6 +72,13 @@ const app = new Vue({
                 items[activeClass].classList.add('active');
                 overlayActive[activeClass].classList.add('active');
             }
+        },
+        actualImg : function(index){
+            items[activeClass].classList.remove('active');
+            overlayActive[activeClass].classList.remove('active');
+            activeClass = index;
+            overlayActive[activeClass].classList.add('active');
+            items[activeClass].classList.add('active');
         }
     }
 });
