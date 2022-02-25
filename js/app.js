@@ -1,5 +1,4 @@
 let activeClass = 0;
-let slide;
 
 const app = new Vue({
     el : '#app',
@@ -24,7 +23,7 @@ const app = new Vue({
             {
                 image : 'img/img-4.jpg',
                 place : 'Forza D\'Agrò',
-                description : 'Forza d\'Agrò (\'a Forza in siciliano) è un comune italiano di 849 abitanti[2] della città metropolitana di Messina in Sicilia.'    
+                description : 'Forza d\'Agrò (\'a Forza in siciliano) è un comune italiano di 849 abitanti della città metropolitana di Messina in Sicilia.'    
             },
             {
                 image : 'img/img-5.jpg',
@@ -43,7 +42,8 @@ const app = new Vue({
         carouselClass : 'item',
         carouselTitleClass : 'title',
         carouselDescriptionClass : 'description',
-        controlClass : 'control-wrapper'
+        controlClass : 'control-wrapper', 
+        slide : undefined
     },
     //con mounted faccio eseguire il metodo slideCarousel appena la pagina viene caricata
     mounted: function(){
@@ -84,11 +84,11 @@ const app = new Vue({
         //creo un metodo che contiene una timing function che ogni tre secondi invoca la funzione nextImg
         slideCarousel: function () {
             console.log('mouse leave!!');
-            slide = setInterval(this.nextImg, 3000);
+            this.slide = setInterval(this.nextImg, 3000);
         },
         stopSlideCarousel: function () {
             console.log('mouse over!!');
-            clearInterval(slide);
+            clearInterval(this.slide);
         }
     }
 });

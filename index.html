@@ -17,7 +17,7 @@
     
     <section id="app">
         <h1 v-bind:class="vueSlider">{{ vueSliderContent }}</h1>
-        <div class="row slider" @mouseover="stopSlideCarousel" @mouseleave="slideCarousel">
+        <div class="row slider" @mouseenter="stopSlideCarousel" @mouseleave="slideCarousel">
 
             <div class="col-10 slides-wrapper">
                 <div v-for="element in carouselObjects" v-bind:class="carouselClass">
